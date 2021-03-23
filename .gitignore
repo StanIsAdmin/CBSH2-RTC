@@ -1,2 +1,7 @@
 .idea
 cmake-*
+CMake*
+Makefile
+cbs
+data/**
+out/**
