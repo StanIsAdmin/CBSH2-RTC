@@ -119,7 +119,7 @@ void CBS::findConflicts(CBSNode& curr)
 	clock_t t = clock();
 	if (curr.parent != nullptr)
 	{
-		// Copy from parent、
+		// Copy from parent
 		list<int> new_agents;
 		for (const auto& p : curr.paths)
 		{
@@ -675,6 +675,20 @@ void CBS::saveCT(const string &fileName) const // write the CT to a file
 	output.close();
 }
 
+void CBS::savePaths(const string &fileName) const
+{
+    std::ofstream output;
+    output.open(fileName, std::ios::out);
+    for (int i = 0; i < num_of_agents; i++)
+    {
+        output << "Agent " << i << ": ";
+        for (const auto & t : *paths[i])
+            output << "(" << search_engines[0]->instance.getRowCoordinate(t.location)
+                   << "," << search_engines[0]->instance.getColCoordinate(t.location) << ")->";
+        output << endl;
+    }
+    output.close();
+}
 
 void CBS::printConflicts(const CBSNode &curr)
 {
