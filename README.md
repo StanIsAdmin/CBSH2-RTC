@@ -14,6 +14,7 @@ This solver consists of Conflict-Based Search [1] and many of its improvement te
     * target reasoning [8]
     * corridor reasoning [8] and corridor-target reasoning [7]
     * mutex propagation [9]
+* Disjoint splitting [10]
  
  
  
@@ -24,20 +25,28 @@ CoRR, abs/2103.07116, 2021.
 
  
  ## Usage
-The code requires the external library BOOST (https://www.boost.org/). After you installed BOOST and downloaded the source code, go into the directory of the source code and compile it with CMake: 
-```
+The code requires the external library BOOST (https://www.boost.org/). 
+You can follow the instruction on the BOOST webpage to install it. Or, 
+if you are using Ubantu, you can install it simply by
+```shell script
+sudo apt install libboost-all-dev
+``` 
+
+After you installed BOOST and downloaded the source code, go into the directory of the source code and compile it with CMake: 
+```shell script
 cmake .
 make
 ```
 
 Then, you are able to run the code:
-```
-./cbs -m random-32-32-20.map -a random-32-32-20-random-1.scen -o test.csv -k 30 -t 60
+```shell script
+./cbs -m random-32-32-20.map -a random-32-32-20-random-1.scen -o test.csv --outputPaths=paths.txt -k 30 -t 60
 ```
 
 - m: the map file from the MAPF benchmark
 - a: the scenario file from the MAPF benchmark
 - o: the output file that contains the search statistics
+- outputPaths: the output file that contains the paths 
 - k: the number of agents
 - t: runtime limit (in seconds)
 
@@ -50,7 +59,7 @@ generalized rectangle and corridor reasoning).
 
 If you want to turn on/off some techniques,
 you can find more details and explanations for all parameters with:
-```
+```shell script
 ./cbs --help
 ```
 
@@ -100,3 +109,6 @@ In Proceedings of the International Conference on Automated Planning and Schedul
 Multi-Agent Path Finding with Mutex Propagation.
 In Proceedings of the International Conference on Automated Planning and Scheduling (ICAPS), pages 323-332, 2020.
  
+[10] Jiaoyang Li, Daniel Harabor, Peter J. Stuckey, Ariel Felner, Hang Ma, and Sven Koenig.
+Disjoint Splitting for Multi-Agent Path Finding with Conflict-Based Search.
+In Proceedings of the International Conference on Automated Planning and Scheduling (ICAPS), pages 279-283, 2019.
